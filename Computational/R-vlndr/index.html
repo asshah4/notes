@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://asshah4.github.io/notes/Computational/R-vlndr/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>R vlndr - Notes</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Notes</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Notes</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Arrhythmia <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Arrhythmia/paper-arrhythmias-and-infective-endocarditis/" class="dropdown-item">Ideas</a>
+</li>
+                                    
+<li>
+    <a href="../../Arrhythmia/paper-sympathetic-innervation/" class="dropdown-item">Outline</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Computational <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../R-card/" class="dropdown-item">R card</a>
+</li>
+                                    
+<li>
+    <a href="../R-hrd/" class="dropdown-item">R hrd</a>
+</li>
+                                    
+<li>
+    <a href="../R-rcr/" class="dropdown-item">R rcr</a>
+</li>
+                                    
+<li>
+    <a href="../R-shiva/" class="dropdown-item">R shiva</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">R vlndr</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../R-shiva/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#major-classes" class="nav-link">Major classes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#formulas" class="nav-link">Formulas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#structure" class="nav-link">Structure</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#terms" class="nav-link">Terms</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#formulas_1" class="nav-link">Formulas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#formula-lists" class="nav-link">Formula Lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#model-lists" class="nav-link">Model Lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#major-classes_1" class="nav-link">Major Classes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#approach" class="nav-link">Approach</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#classes" class="nav-link">Classes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#atomic-relationships" class="nav-link">Atomic Relationships</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#relationship-stacks" class="nav-link">Relationship Stacks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#formula-lists_1" class="nav-link">Formula Lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compacted-formula-lists" class="nav-link">Compacted Formula Lists</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#formula-maps" class="nav-link">Formula Maps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#requirements" class="nav-link">Requirements</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#implementation" class="nav-link">Implementation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>The <code>R</code> package <code>{vlndr}</code> is a software package built to handle and organize multiple models when performing causal-oriented analyses.  The package documentation is located on the <a href="https://asshah4.github.io/vlndr">website</a> and software development is on <a href="https://github.com/asshah4/vlndr">Github</a>.</p>
+<p>This is a brainstorming area for the <code>{vlndr}</code> package. The goal is to organize multiple models for understanding relationship.</p>
+<p>Forest plots based on interaction terms
+Interaction terms need:</p>
+<pre><code class="language-r">&gt; X &lt;- model.matrix(mod)
+&gt; dof &lt;- nrow(X) - ncol(X)
+&gt; coefs_var &lt;- vcov(mod)
+</code></pre>
+<h1 id="major-classes">Major classes<a class="headerlink" href="#major-classes" title="Permanent link">&para;</a></h1>
+<p>To pursue this project, several new classes would need to be generated. 
+I dive into how to consider and think about them here. 
+These are not necessarily formalized in the draft package, but are part of the development process.</p>
+<hr />
+<h1 id="formulas">Formulas<a class="headerlink" href="#formulas" title="Permanent link">&para;</a></h1>
+<p>In the traditional formula, as seen in <code>R</code>, the capabilities include:</p>
+<ul>
+<li>directly identifies the independent and dependent variables </li>
+<li>models to be built/informed</li>
+<li>data selection (e.g. vectors/columns) along with data transformation</li>
+<li>terms can be modified and some interaction/relationships can be implemented</li>
+</ul>
+<p>The capabilities that traditional formulas are missing:</p>
+<ul>
+<li>variable roles within relationships of formulas</li>
+<li>nested/grouped formulas that represent a modeling concept (e.g. mediation, confounding)</li>
+<li>stratification of data</li>
+<li>hierarchical formulas (such as random effects)</li>
+<li>formula expansions and combinations</li>
+</ul>
+<h1 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h1>
+<p>This diagram is to help identify the structures needed in the development of an improved formula system.</p>
+<pre><code class="language-mermaid">classDiagram
+direction TB
+
+class TermRecord {
+    character term
+    character roles
+    character groups
+    character operations
+    character labels
+    character description
+    character distribution
+    character data
+    character class
+}
+
+class FormulaVector {
+    list~term_rcrd~ terms
+    list~character~ labels
+    list~character~ roles
+    list~character~ groups
+    list~character~ operations
+}
+
+class FormulaList {
+    list~formula_vctr~ formulas
+    list~character~ labels
+    list~character~ roles
+    list~character~ groups
+}
+
+
+TermRecord &quot;1..*&quot; --|&gt; &quot;1&quot; FormulaVector
+FormulaVector --|&gt; FormulaList
+</code></pre>
+<h2 id="terms">Terms<a class="headerlink" href="#terms" title="Permanent link">&para;</a></h2>
+<p><code>term</code> objects have specific attributes that modify the <code>character</code> class in <code>R</code>...</p>
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>side</td>
+<td>eventual side of an equation or formula (e.g. LHS, RHS)</td>
+</tr>
+<tr>
+<td>role</td>
+<td>epidemiological positions, such as exposure, outcome, predictor, covariate, confounder, mediator, or more complex modeling terms such as strata or random/effect effect</td>
+</tr>
+<tr>
+<td>group</td>
+<td>if terms are related to one another, they may be grouped together</td>
+</tr>
+<tr>
+<td>operation(s)</td>
+<td>such as <code>log()</code> transformation</td>
+</tr>
+<tr>
+<td>label</td>
+<td>an abbreviated character string for variable display</td>
+</tr>
+<tr>
+<td>description</td>
+<td>explanation of a variable if needed, particularly as part of or from a data dictionary</td>
+</tr>
+<tr>
+<td>distribution</td>
+<td>the pattern of how the data is expected to be (or how the data happens to be), could also be a verification step</td>
+</tr>
+<tr>
+<td>class</td>
+<td>expected character time</td>
+</tr>
+<tr>
+<td>data</td>
+<td>if a vector of a data is added to this from a data set, can be stored with the term, or could also come from turning a data-set into terms</td>
+</tr>
+</tbody>
+</table>
+<p>Each <code>term</code> is essentially a <em>promise</em> or <em>contract</em> with the data set that contains additional information to help understand the data better, and use it in hypothesis generation.</p>
+<h3 id="exposures-and-outcomes">Exposures and Outcomes<a class="headerlink" href="#exposures-and-outcomes" title="Permanent link">&para;</a></h3>
+<p>Exposures sometimes need to travel together. Would be helpful to use a numbering system to help know when terms should travel together. Normally the terms would be split apart like so...</p>
+<p>y ~ Xa + Xb = y ~ a | y ~ b</p>
+<p>However, if we want dual exposures like:</p>
+<p>y ~ Xa + Xb + Xc = y ~ a + b | y ~ c</p>
+<p>Exposures would somehow need to travel together.</p>
+<p>y ~ X₁a + X₁b + X₂c = y ~ a + b | y ~ c</p>
+<h2 id="formulas_1">Formulas<a class="headerlink" href="#formulas_1" title="Permanent link">&para;</a></h2>
+<p>Formulas are combinations of underlying terms in some order, broken roughly into three parts...</p>
+<ol>
+<li>LHS or outcomes</li>
+<li>RHS or predictors</li>
+<li>Special terms such as random effects, strata, or conditioning/clustering variables</li>
+</ol>
+<p>As these formulas have terms that have specific roles, such as multiple outcomes or multiple predictors, they cannot be used directly unless expanded into an appropriate formula (that can be fit). </p>
+<p>This is the core feature, a <code>formula</code> class that has built-in specifications of how to manipulate and show the <em>relationship</em> of the terms together.</p>
+<h2 id="formula-lists">Formula Lists<a class="headerlink" href="#formula-lists" title="Permanent link">&para;</a></h2>
+<p>The expanded formulas are true formulas that can be utilized in regression modeling or statistical testing. The list itself could also contain attributes about the underlying terms (e.g. labels, groups, roles). This could subsequently be used to help decide on how these formulas should be fit.</p>
+<h2 id="model-lists">Model Lists<a class="headerlink" href="#model-lists" title="Permanent link">&para;</a></h2>
+<p>Multiple models can be linked together in some pattern to help understand a concept or physiology. This family of models could/should have informative attributes, such as model terms, labels, groups, and patterns.</p>
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<ol>
+<li>Formulas should have roles/positions to help identify their roles in the corresponding DAG. These formulas should also be <em>expandable</em> as needed to encompass the variety of relationships. </li>
+<li>Formulas should have multiple levels.  Essentially should have a "top level" formula that can be broken into separate or related DAGs. This is probably the back-bone structure.</li>
+<li>DAG should be visualized with both weights (like SEM), and unweighted, to understand relationships. This might best be done based off of <code>ggdag</code> and <code>dagitty</code> as the backbone. </li>
+<li>Model and model lists are also needed. They are essentially the <em>fit</em> version of the formulas and have an additional, associated test type. </li>
+<li>Models cannot have a the same scope as the "top level" formula, they must be simplifed to a single testable item. However, they can likely be grouped into model lists that are related.</li>
+</ol>
+<h3 id="key-concepts">Key Concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Models</th>
+<th>Formulas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relationships</td>
+<td>Multiple</td>
+<td>Multiple</td>
+</tr>
+<tr>
+<td>Expandable</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Collapsable</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Directionality</td>
+<td>Specified</td>
+<td>Specified</td>
+</tr>
+<tr>
+<td>Levels</td>
+<td>Multiple</td>
+<td>Multiple</td>
+</tr>
+<tr>
+<td>Core</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h1 id="major-classes_1">Major Classes<a class="headerlink" href="#major-classes_1" title="Permanent link">&para;</a></h1>
+<p>The major classes that would be needed are...</p>
+<ul>
+<li>Formula List (a clean way to combine formulas for a shared interspace)</li>
+<li>Paths (a combination of formula lists that represent a hypothesis or causal model)</li>
+<li>Maps (a combination of paths that may come from the same data set)</li>
+</ul>
+<h1 id="approach">Approach<a class="headerlink" href="#approach" title="Permanent link">&para;</a></h1>
+<p>This is a development / exploration of what classes would be needed and what characteristics would be required for an effective causal modeling approach.</p>
+<pre><code class="language-mermaid">graph TD
+
+    1a(y &lt;- x)
+    1b(y &lt;- c)
+    1c(y &lt;- m)
+    1d(x &lt;- c)
+    1e(m &lt;- x)
+    2(y &lt;- x &lt;br&gt; y &lt;- c &lt;br&gt; y &lt;- m &lt;br&gt; x &lt;- c &lt;br&gt; m &lt;- x )
+    3(y &lt;- x + m + c &lt;br&gt; y &lt;- x + c &lt;br&gt; m &lt;- x + c)
+    4(&quot;y &lt;- exposure(x) + confounder(c) + mediator(m)&quot;)
+    5(y1 &lt;- x1 + x2 + m + ... &lt;br&gt; y2 &lt;- x2 + c + m)
+
+    subgraph a [Atomic relationships to Relationship Stack]
+    1a --&gt; 2
+    1b --&gt; 2
+    1c --&gt; 2
+    1d --&gt; 2
+    1e --&gt; 2
+    end
+
+    2 -- Formula List --&gt; 3
+    3 -- Compact Formula List --&gt; 4
+    4 -- Formula Map --&gt; 5
+
+</code></pre>
+<h1 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">&para;</a></h1>
+<h2 id="atomic-relationships">Atomic Relationships<a class="headerlink" href="#atomic-relationships" title="Permanent link">&para;</a></h2>
+<pre><code class="language-r">y ~ x
+</code></pre>
+<p>Requirements:
+- pattern would only be for a single relationship between independent and dependent variables
+- there should be no other terms included</p>
+<h2 id="relationship-stacks">Relationship Stacks<a class="headerlink" href="#relationship-stacks" title="Permanent link">&para;</a></h2>
+<pre><code class="language-r">y ~ x
+y ~ c
+y ~ m
+x ~ c
+m ~ x
+</code></pre>
+<p>Requirements:
+- specific/special list classification 
+- each list item would need to be an atomic relationship</p>
+<h2 id="formula-lists_1">Formula Lists<a class="headerlink" href="#formula-lists_1" title="Permanent link">&para;</a></h2>
+<pre><code class="language-r">y1 ~ ...
+y2 ~ ...
+</code></pre>
+<h2 id="compacted-formula-lists">Compacted Formula Lists<a class="headerlink" href="#compacted-formula-lists" title="Permanent link">&para;</a></h2>
+<pre><code class="language-r">y ~ X(x) + C(c) + M(m)
+</code></pre>
+<h2 id="formula-maps">Formula Maps<a class="headerlink" href="#formula-maps" title="Permanent link">&para;</a></h2>
+<pre><code class="language-r">y1 ~ ...
+y2 ~ ...
+</code></pre>
+<p><strong>Note</strong>: The development of the <code>formula</code> classes that are related to DAGs ended up splitting up into an additional package. </p>
+<h1 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h1>
+<p>The <code>formula</code> in R is essentially a language/list object with three components. It has a LHS, RHS, and an operator in between. It allows for terms on the right and the left that can have specific operators to manipulate them, e.g. <code>+</code> for adding terms. To create this more complex system, additional requirements will be needed.</p>
+<pre><code class="language-mermaid">graph TD
+    f1a((DV &lt;- IV))
+    f1b((DV &lt;- C))
+    f1c((IV &lt;- C))
+    f2((DV &lt;- IV + C))
+    f3((DV + DV &lt;- IV + C1 + C2))
+    f1a --&gt; f2
+    f1b --&gt; f2
+    f1c --&gt; f2
+    f2 --&gt; f3
+</code></pre>
+<p>There are multiple levels here.</p>
+<ol>
+<li>Atomic level of relationships. This should only be two variables. This has to be contextualized as part of a "family" of atomic relationships however. </li>
+<li>Standard formula of relationships. The next level would be combination formulas that are at the level of which they could be tested. If it was a mediation question, then the formula would have to be a set of structured equations.</li>
+<li>Parent formula complex. This uses labels to help identify how the exposures and outcomes are related (e.g. in combination, etc). If this starts off as a DAG, it may end up being "sets" of formulas. If its an equation, then it would not be possible to identify which exposures go to which outcomes.***</li>
+</ol>
+<p>*** <code>Y1 + Y2 ~ X1 + X2</code> would lead to a different set of equation relationships. A DAG however may only include a subset.</p>
+<p>This shows how the DAG may look if the parent formula was described first.</p>
+<pre><code class="language-mermaid">graph TD
+    X1 --&gt; Y1
+    X1 --&gt; Y2
+    X2 --&gt; Y1
+    X2 --&gt; Y2
+</code></pre>
+<p>If the DAG was made first, and was not equivalent, would decompose into something different.</p>
+<pre><code class="language-mermaid">graph TD
+    X1 --&gt; Y1
+    X1 --&gt; Y2
+    X2 --&gt; Y2
+</code></pre>
+<p>This could not be represented easiy in a single formula, e.g. <code>Y1 + Y2 ~ X1 + X2</code> misrepresents the relationship. Instead two equations would be needed.
+1. <code>Y1 ~ X1</code><br />
+1. <code>Y2 ~ X1 + X2</code> </p>
+<p>The parent level here is thus still a "set" of equations that can transition between being a DAG and a set of formulas. </p>
+<h1 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h1>
+<p>Starting with the parent level of this "dag/formula" object, we need to decide what will be the basic and default structure. A formula-list is probably the correct system to use.  </p>
+<pre><code class="language-r"># Example of a complex formula
+y1 + y2 ~ x1 + x2 + c1 + c2
+
+# This needs to be split into two outcomes at least
+y1 ~ x1 + x2 + c1 + c2
+y2 ~ x1 + x2 + c1 + c2
+
+# Or can be split by exposures
+y1 + y2 ~ x1 + c1 + c2
+y1 + y2 ~ x2 + c1 + c2
+</code></pre>
+<p>The minimum number of components of the formula-list needs to be the compatible components of a DAG that can be modeled. Thus, a relationship set with two outcomes must be split apart. Also, must be split by exposure.</p>
+<p>To do this, the central feature that identifies a formula-list must be an <strong>exposure-outcome</strong> relationship. The input to the system can be of two major types:</p>
+<ol>
+<li>DAG (or unidirectional path graph)</li>
+<li>Complex formula</li>
+</ol>
+<p>Software that I've written that is related</p>
+<ul>
+<li><a href="./">R-vlndr</a></li>
+<li><a href="../R-card/">R-card</a></li>
+<li><a href="../R-rcr/">R-rcr</a></li>
+<li><a href="../R-hrd/">R-hrd</a>
+-<a href="../R-shiva/">R-shiva</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
